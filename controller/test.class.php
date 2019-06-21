@@ -18,6 +18,31 @@ class Test {
             self::mail($value['mail']);
         }
     }
+    public function autoMail(){
+        // $t=0;
+        // while ($t<5) {
+        //     echo "string";
+        //     sleep(5);
+        //     $t++;
+        // };
+        // die();
+        $mysqli = new mysqli('127.0.0.1','root','root','mail');
+        while (true) {
+            $sql        = "select * from maillists";
+            $query      = $mysqli->query($sql);
+            $mail_lists = $query->fetch_all(MYSQLI_ASSOC);
+            $tmp = [];
+            foreach ($mail_lists as $key => $value) {
+                self::mail($value['mail']);
+                $tmp[] = $value['id'];
+            }
+            $idstr  = implode(',', $tmp);
+            $sql    = "delete from maillists where id in({$idstr})";
+            echo $sql;
+            $query  = $mysqli->query($sql);
+            sleep(5*60);
+        }
+    }
 
     public function mail($userMail) {
 
