@@ -31,6 +31,10 @@ class Test {
             $sql        = "select * from maillists";
             $query      = $mysqli->query($sql);
             $mail_lists = $query->fetch_all(MYSQLI_ASSOC);
+            if (empty($maillists)) {
+                echo "no message";
+                sleep(60*60);
+            }
             $tmp = [];
             foreach ($mail_lists as $key => $value) {
                 self::mail($value['mail']);
@@ -38,9 +42,13 @@ class Test {
             }
             $idstr  = implode(',', $tmp);
             $sql    = "delete from maillists where id in({$idstr})";
-            echo $sql;
             $query  = $mysqli->query($sql);
-            sleep(5*60);
+            if (!$query) {
+                echo "error";
+            }else{
+                echo "success";
+            }
+            sleep(60*60);
         }
     }
 
