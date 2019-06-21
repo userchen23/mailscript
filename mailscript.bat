@@ -1,0 +1,1 @@
+"C:\phpStudy\PHPTutorial\php\php-7.2.1-nts\php.exe" -f "C:\phpStudy\PHPTutorial\WWW\mailscript\index.php"
