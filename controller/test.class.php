@@ -31,9 +31,9 @@ class Test {
             $sql        = "select * from maillists";
             $query      = $mysqli->query($sql);
             $mail_lists = $query->fetch_all(MYSQLI_ASSOC);
-            if (empty($maillists)) {
-                echo "no message";
-                sleep(60*60);
+            if (empty($mail_lists)) {
+                echo "no message\n";
+                sleep(2*60);
             }
             $tmp = [];
             foreach ($mail_lists as $key => $value) {
@@ -44,11 +44,11 @@ class Test {
             $sql    = "delete from maillists where id in({$idstr})";
             $query  = $mysqli->query($sql);
             if (!$query) {
-                echo "error";
+                echo "error\n";
             }else{
-                echo "success";
+                echo "success\n";
             }
-            sleep(60*60);
+            sleep(1*60);
         }
     }
 
